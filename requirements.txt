@@ -1,3 +1,5 @@
 flask==1.1.2
 pylint-flask==0.6
-pytest==6.1.1
+flask-cors==3.0.9
+Flask-PyMongo==2.3.0
+pymongo[srv]

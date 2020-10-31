@@ -1,4 +1,4 @@
-.variaveis_ambiente_dev
+devcontainer.env
 .pytest_cache
 __pycache__
 /frontend
