@@ -1,11 +1,13 @@
 FROM python:3
 
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 
 COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./src  ./
+EXPOSE 5000
 
-CMD [ "python", "./src/start.py" ]
+ENV FLASK_APP src/inicio.py
+
+CMD [ "flask", "run" ]

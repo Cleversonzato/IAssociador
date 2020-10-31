@@ -1,0 +1,4 @@
+.variaveis_ambiente_dev
+.pytest_cache
+__pycache__
+/frontend
