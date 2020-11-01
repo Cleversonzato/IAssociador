@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request
 from flask_cors import CORS, cross_origin
 from flask_pymongo import PyMongo
+from src.correcao import corrigir
 
 app = Flask(__name__, static_folder='../frontend/static', template_folder='../frontend')
 CORS(app, origins=[os.environ['CORS_ALLOW_URL']] )
@@ -18,12 +19,13 @@ def perfil():
     resposta = mongo.db.perfil.insert_one(request.json)
     return {'teste': str(resposta.inserted_id)}
 
-@app.route('/evento')
+@app.route('/evento', methods=['POST'])
 def evento():
-    print(request.json)
-    return {'sucess':'oi'}
+    mongo.db.evento.insert_one(request.json)
+    return {'situacao':'sucesso'}
 
-@app.route('/resultado')
+@app.route('/resultado', methods=['POST'])
 def resultado():
-    print(request.json)
-    return {'sucess':'oi'}
+    mongo.db.evento.insert_one(request.json)
+    resultado = corrigir(request.json)
+    return { 'culpado': resultado }
