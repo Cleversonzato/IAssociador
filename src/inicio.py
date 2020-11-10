@@ -10,14 +10,18 @@ app.config["MONGO_URI"]=os.environ['MONGODB_URI']
 mongo = PyMongo(app)
 
 @app.route('/', methods=['GET'])
-@cross_origin(origins='*')
-def hello_world():
+def hello():
     return render_template('index.html')
 
 @app.route('/perfil', methods=['POST'])
 def perfil():
     resposta = mongo.db.perfil.insert_one(request.json)
     return {'teste': str(resposta.inserted_id)}
+
+@app.route('/escolha', methods=['POST'])
+def escolha():
+   mongo.db.escolha.insert_one(request.json)
+   return {'situacao':'sucesso'}
 
 @app.route('/evento', methods=['POST'])
 def evento():
@@ -26,6 +30,6 @@ def evento():
 
 @app.route('/resultado', methods=['POST'])
 def resultado():
-    mongo.db.evento.insert_one(request.json)
     resultado = corrigir(request.json)
-    return { 'culpado': resultado }
+    mongo.db.resultado.insert_one(resultado)
+    return { 'sigla': resultado['resultado'] }
