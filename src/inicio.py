@@ -1,17 +1,34 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS, cross_origin
 from flask_pymongo import PyMongo
 from src.correcao import corrigir
 
-app = Flask(__name__, static_folder='../frontend/static', template_folder='../frontend')
+app = Flask(__name__, template_folder='../frontend', static_folder='../frontend/static')
 CORS(app, origins=[os.environ['CORS_ALLOW_URL']] )
 app.config["MONGO_URI"]=os.environ['MONGODB_URI']
 mongo = PyMongo(app)
 
+
 @app.route('/', methods=['GET'])
-def hello():
+def index():
     return render_template('index.html')
+
+@app.route('/<path:path>', methods=['GET'])
+def default(path):
+    partes = path.split('/')
+
+    if partes[-1].endswith('.mp3') or partes[-1].endswith('.ico'):
+        print(partes[-1])
+        print(url_for('static', filename=partes[-1]))
+        return redirect(url_for('static', filename=partes[-1]))
+
+    elif len(partes) > 2:
+        url = partes[-2]+'/'+partes[-1]        
+        return redirect(url_for('static', filename=url))
+
+    else:
+        return render_template('index.html')
 
 @app.route('/perfil', methods=['POST'])
 def perfil():
