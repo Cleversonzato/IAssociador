@@ -19,8 +19,6 @@ def default(path):
     partes = path.split('/')
 
     if partes[-1].endswith('.mp3') or partes[-1].endswith('.ico'):
-        print(partes[-1])
-        print(url_for('static', filename=partes[-1]))
         return redirect(url_for('static', filename=partes[-1]))
 
     elif len(partes) > 2:
