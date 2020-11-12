@@ -3,4 +3,5 @@ pylint-flask==0.6
 flask-cors==3.0.9
 Flask-PyMongo==2.3.0
 pymongo[srv]
-tensorflow
+tensorflow==2.3.1
+pandas==1.1.4

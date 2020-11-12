@@ -2,8 +2,10 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS, cross_origin
 from flask_pymongo import PyMongo
-from src.correcao import corrigir
 from bson.json_util import dumps
+from src.correcao import corrigir
+from src.treinamento import iniciar_treinamento
+
 
 app = Flask(__name__)
 CORS(app, origins=[os.environ['CORS_ALLOW_URL']] )
@@ -45,3 +47,12 @@ def resultado():
     mongo.db.resultado.insert_one(resultado_correcao)
     # addicionar nos dados
     return { 'sigla': resultado_correcao['resultado'] }
+
+
+@app.route('/treinar', methods=['POST'])
+def treinar():
+    if os.environ['SENHA'] == request.get_json().get('senha'):
+        iniciar_treinamento(mongo)
+
+    return ""
+
