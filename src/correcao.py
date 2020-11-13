@@ -23,12 +23,12 @@ def corrigir_digitadas(dados):
 
 def corrigir(dados):
     if dados['tipo_teste'] == 'opcoes':
-        dados['resultado'] = corrigir_opcoes(dados)
+        dados['resultado_ia'] = corrigir_opcoes(dados)
 
     elif dados['tipo_teste'] == 'escalas':
-        dados['resultado'] = corrigir_escalas(dados)
+        dados['resultado_ia'] = corrigir_escalas(dados)
 
     elif dados['tipo_teste'] == 'digitadas':
-        dados['resultado'] = corrigir_digitadas(dados)
+        dados['resultado_ia'] = corrigir_digitadas(dados)
 
     return dados

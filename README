@@ -1,1 +1,10 @@
-A fazer
+# IAssociador
+
+Código com a lógica do IAssociador.
+O frontend está na pasta "static" e "templates", tendo o código em: 
+
+### Observações
+
+- Usar python versão 3.8, preferencialmente, por conta das bibliotecas
+- Execute (só uma vez) o python ./setup.py iniciar antes de rodar o programa [python -c 'import setup; setup.iniciar()']
+- As outras rotinas (limpeza de dados e treino) também estão no arquivo de setup
