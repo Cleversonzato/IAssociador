@@ -1,1 +1,1 @@
-web: python run.py 
+web: waitress-serve --call src.iniciar:create_app
