@@ -1,1 +1,1 @@
-web: waitress-serve --call src.iniciar:create_app
+web waitress-serve --call src.iniciar:create_app
