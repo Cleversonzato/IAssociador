@@ -13,7 +13,6 @@ def get_db():
 def iniciar():
     # nltk.download('punkt')
     get_db().ia.insert_one( {"tipo":"estatisticas","opcoes":{"erros":0,"acertos":0},"escalas":{"erros":0,"acertos":0},"digitadas":{"erros":0,"acertos":0}} )
-
     get_db().ia.insert_one({"tipo":"tempo_ultimos","opcoes":0,"escalas":0,"digitadas":0})
 
 def limpar_dados():

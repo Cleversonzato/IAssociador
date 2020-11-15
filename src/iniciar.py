@@ -42,7 +42,8 @@ def evento():
 
 @app.route('/resultado', methods=['POST'])
 def resultado():
-    resultado_correcao = corrigir(request.json)
+    resultado_correcao = corrigir(request.json, mongo)
     mongo.db.resultado.insert_one(resultado_correcao)
+
     # addicionar nos dados
-    return { 'sigla': resultado_correcao['resultado'] }
+    return { 'sigla': resultado_correcao['sigla_ia'], 'porcentagem': resultado_correcao['valor_ia']}
