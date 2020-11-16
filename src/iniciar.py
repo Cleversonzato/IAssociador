@@ -23,7 +23,7 @@ def create_app():
             resposta = mongo.db.ia.find_one({'tipo':'estatisticas'})
             return dumps(resposta), 200
 
-        return redirect( url_for('static', filename=path) )
+        return redirect( url_for('static', filename=path, _external=True, _scheme='https') )
 
     @app.route('/perfil', methods=['POST'])
     def perfil():
