@@ -8,7 +8,7 @@ from src.correcao import corrigir
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, origins=[os.environ['CORS_ALLOW_URL']] )
+    CORS(app, origins=['http://localhost'] )
     app.config["MONGO_URI"]=os.environ['MONGODB_URI']
     mongo = PyMongo(app)
 
