@@ -8,7 +8,7 @@ from src.correcao import corrigir
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, origins=['http://localhost'] )
+    CORS(app, origins=[os.environ['CORS_ALLOW_URL']] )
     app.config["MONGO_URI"]=os.environ['MONGODB_URI']
     mongo = PyMongo(app)
 
@@ -23,7 +23,7 @@ def create_app():
             resposta = mongo.db.ia.find_one({'tipo':'estatisticas'})
             return dumps(resposta), 200
 
-        return redirect("/static/"+path)
+        return redirect( url_for('static', filename=path) )
 
     @app.route('/perfil', methods=['POST'])
     def perfil():
