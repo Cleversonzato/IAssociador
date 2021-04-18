@@ -73,3 +73,8 @@ def corrigir(dados, mongo):
     estatisticas = mongo.db.ia.replace_one({'tipo':'estatisticas'}, estatisticas)
 
     return dados
+
+def inicializar_corretor():
+    model = tf.keras.models.load_model('nn_models/opcoes')
+    model = tf.keras.models.load_model('nn_models/escalas')
+    model = tf.keras.models.load_model('nn_models/digitadas')

@@ -3,8 +3,10 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS, cross_origin
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
-from src.correcao import corrigir
+from src.correcao import corrigir, inicializar_corretor
 
+def inicializar_demorados():
+    inicializar_corretor()
 
 def create_app():
     app = Flask(__name__)
@@ -14,6 +16,7 @@ def create_app():
 
     @app.route('/', methods=['GET'])
     def index():
+        inicializar_demorados()
         return render_template('index.html')
 
     @app.route('/<path:path>', methods=['GET'])
